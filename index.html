@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de Comprensión Auditiva</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        .question { margin-bottom: 20px; border: 1px solid #ccc; padding: 15px; border-radius: 5px; }
+        .options { list-style-type: none; padding: 0; }
+        .options li { margin: 5px 0; }
+        #check-btn { display: block; width: 100%; padding: 10px; background-color: #fbd351; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        #result { margin-top: 20px; font-weight: bold; text-align: center; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
+
+    <h2>Multiple Choice Exercise</h2>
+
+    <audio controls style="width: 100%; margin-bottom: 20px;">
+        <source src="URL_DEL_AUDIO_AQUI.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div id="quiz">
+        <div class="question">
+            <p>1. What time does Rania usually start work?</p>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="a"> a) 6 am</li>
+                <li><input type="radio" name="q1" value="b"> b) 7 am</li>
+                <li><input type="radio" name="q1" value="c"> c) 8 am</li>
+                <li><input type="radio" name="q1" value="d"> d) 9 am</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>2. What does Rania never do during meetings?</p>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="a"> a) Speak</li>
+                <li><input type="radio" name="q2" value="b"> b) Take notes</li>
+                <li><input type="radio" name="q2" value="c"> c) Check her phone</li>
+                <li><input type="radio" name="q2" value="d"> d) Leave early</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>3. How many languages does Rania speak?</p>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="a"> a) One</li>
+                <li><input type="radio" name="q3" value="b"> b) Two</li>
+                <li><input type="radio" name="q3" value="c"> c) Three</li>
+                <li><input type="radio" name="q3" value="d"> d) Four</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>4. What does Rania do after work, according to Youssef?</p>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="a"> a) Studies</li>
+                <li><input type="radio" name="q4" value="b"> b) Goes to the gym</li>
+                <li><input type="radio" name="q4" value="c"> c) Sleeps</li>
+                <li><input type="radio" name="q4" value="d"> d) Cooks dinner</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>5. How often does Rania take breaks?</p>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="a"> a) Often</li>
+                <li><input type="radio" name="q5" value="b"> b) Always</li>
+                <li><input type="radio" name="q5" value="c"> c) Rarely</li>
+                <li><input type="radio" name="q5" value="d"> d) Never</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <p>6. Does Rania finish her work on time?</p>
+            <ul class="options">
+                <li><input type="radio" name="q6" value="a"> a) Never</li>
+                <li><input type="radio" name="q6" value="b"> b) Sometimes</li>
+                <li><input type="radio" name="q6" value="c"> c) Rarely</li>
+                <li><input type="radio" name="q6" value="d"> d) Always</li>
+            </ul>
+        </div>
+    </div>
+
+    <button id="check-btn" onclick="checkAnswers()">Check Answers</button>
+    <div id="result"></div>
+
+    <script>
+        function checkAnswers() {
+            const correctAnswers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'c',
+                q4: 'b',
+                q5: 'c',
+                q6: 'd'
+            };
+
+            let score = 0;
+            let total = Object.keys(correctAnswers).length;
+
+            for (let question in correctAnswers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                const questionDiv = selected ? selected.closest('.question') : null;
+
+                if (selected && questionDiv) {
+                    if (selected.value === correctAnswers[question]) {
+                        score++;
+                        questionDiv.style.borderColor = 'green';
+                    } else {
+                         questionDiv.style.borderColor = 'red';
+                    }
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Has obtenido ${score} de ${total} respuestas correctas.`;
+             resultDiv.className = score === total ? 'correct' : 'incorrect';
+        }
+    </script>
+
+</body>
+  </html>
+  
